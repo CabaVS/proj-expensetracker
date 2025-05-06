@@ -11,6 +11,8 @@ internal sealed class DummyCurrentUserAccessor : ICurrentUserAccessor
         "Test User",
         true);
 
+    public Guid GetCurrentUserId() => _currentUser.Id;
+
     public UserModel GetCurrentUser() => _currentUser;
 
     public bool TryGetCurrentUser(out UserModel userModel)

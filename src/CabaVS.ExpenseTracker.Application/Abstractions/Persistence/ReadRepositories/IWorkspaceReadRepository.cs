@@ -4,7 +4,7 @@ namespace CabaVS.ExpenseTracker.Application.Abstractions.Persistence.ReadReposit
 
 public interface IWorkspaceReadRepository
 {
-    Task<WorkspaceModel?> GetWorkspaceByIdAsync(Guid workspaceId, CancellationToken cancellationToken = default);
+    Task<WorkspaceModel?> GetWorkspaceByIdAsync(Guid workspaceId, Guid userId, CancellationToken cancellationToken = default);
 
     Task<bool> UserIsAdminOfWorkspaceAsync(Guid workspaceId, Guid userId, CancellationToken cancellationToken = default);
     Task<bool> UserIsMemberOfWorkspaceAsync(Guid workspaceId, Guid userId, CancellationToken cancellationToken = default);

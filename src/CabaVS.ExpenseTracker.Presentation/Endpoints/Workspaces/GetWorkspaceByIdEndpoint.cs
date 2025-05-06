@@ -30,8 +30,7 @@ internal sealed class GetWorkspaceByIdEndpoint(ISender sender)
         });
     }
 
-    public override async Task<Results<Ok<ResponseModel>, BadRequest<Error>>> ExecuteAsync(
-        RequestModel req,
+    public override async Task<Results<Ok<ResponseModel>, BadRequest<Error>>> ExecuteAsync(RequestModel req,
         CancellationToken ct)
     {
         var query = new GetWorkspaceByIdQuery(req.WorkspaceId);
@@ -52,8 +51,10 @@ internal sealed class GetWorkspaceByIdEndpoint(ISender sender)
     {
         public EndpointSummary()
         {
-            Summary = "Get Workspace By Id";
-            Description = "Gets Workspace by ID. Only if current user has access to it.";
+            Summary = "Get Workspace by Id";
+            Description = "Gets a Workspace by Id. Only if current user has access to it.";
+            
+            Params[nameof(RequestModel.WorkspaceId)] = "Workspace Id to search by.";
 
             Response(
                 (int)HttpStatusCode.OK,

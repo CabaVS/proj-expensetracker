@@ -1,8 +1,10 @@
 ﻿using Azure.Core;
 using Azure.Identity;
+using CabaVS.ExpenseTracker.Application.Abstractions.Persistence;
 using CabaVS.ExpenseTracker.Application.Abstractions.Persistence.ReadRepositories;
 using CabaVS.ExpenseTracker.Persistence.Read;
 using CabaVS.ExpenseTracker.Persistence.Read.Repositories;
+using CabaVS.ExpenseTracker.Persistence.Write;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +38,8 @@ public static class DependencyInjection
             },
             contextLifetime: ServiceLifetime.Transient,
             optionsLifetime: ServiceLifetime.Transient);
+
+        services.AddTransient<IUnitOfWork, UnitOfWork>();
         
         services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
 
