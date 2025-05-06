@@ -3,7 +3,6 @@ using Azure.Identity;
 using CabaVS.ExpenseTracker.Application.Abstractions.Persistence.ReadRepositories;
 using CabaVS.ExpenseTracker.Persistence.Read;
 using CabaVS.ExpenseTracker.Persistence.Read.Repositories;
-using CabaVS.ExpenseTracker.Persistence.Write;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

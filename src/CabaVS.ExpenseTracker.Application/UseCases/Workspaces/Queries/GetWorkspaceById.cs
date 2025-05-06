@@ -5,7 +5,7 @@ using CabaVS.ExpenseTracker.Domain.Common;
 using CabaVS.ExpenseTracker.Domain.Errors;
 using MediatR;
 
-namespace CabaVS.ExpenseTracker.Application.UseCases.Workspaces;
+namespace CabaVS.ExpenseTracker.Application.UseCases.Workspaces.Queries;
 
 public sealed record GetWorkspaceByIdQuery(Guid WorkspaceId) 
     : IWorkspaceAuthorizationRequest, IRequest<Result<WorkspaceModel>>;

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using CabaVS.ExpenseTracker.Application.Models;
-using CabaVS.ExpenseTracker.Application.UseCases.Workspaces;
+using CabaVS.ExpenseTracker.Application.UseCases.Workspaces.Queries;
 using CabaVS.ExpenseTracker.Domain.Common;
 using CabaVS.ExpenseTracker.Presentation.Extensions;
 using FastEndpoints;
