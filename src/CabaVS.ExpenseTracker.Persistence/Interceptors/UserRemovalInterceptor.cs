@@ -1,8 +1,8 @@
-﻿using CabaVS.ExpenseTracker.Persistence.Write.Entities;
+﻿using CabaVS.ExpenseTracker.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace CabaVS.ExpenseTracker.Persistence.Write.Interceptors;
+namespace CabaVS.ExpenseTracker.Persistence.Interceptors;
 
 internal sealed class UserRemovalInterceptor : ISaveChangesInterceptor
 {

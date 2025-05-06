@@ -1,4 +1,4 @@
-﻿namespace CabaVS.ExpenseTracker.Persistence.Write.Entities;
+﻿namespace CabaVS.ExpenseTracker.Persistence.Entities;
 
 internal sealed class UserEfEntity
 {

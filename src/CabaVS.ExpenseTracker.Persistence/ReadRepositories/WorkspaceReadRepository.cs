@@ -3,7 +3,7 @@ using CabaVS.ExpenseTracker.Application.Models;
 using Dapper;
 using Microsoft.Data.SqlClient;
 
-namespace CabaVS.ExpenseTracker.Persistence.Read.Repositories;
+namespace CabaVS.ExpenseTracker.Persistence.ReadRepositories;
 
 internal sealed class WorkspaceReadRepository(ISqlConnectionFactory sqlConnectionFactory) : IWorkspaceReadRepository
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CabaVS.ExpenseTracker.Persistence.Read;
+namespace CabaVS.ExpenseTracker.Persistence;
 
 internal sealed class SqlConnectionFactory(IServiceProvider serviceProvider) : ISqlConnectionFactory
 {

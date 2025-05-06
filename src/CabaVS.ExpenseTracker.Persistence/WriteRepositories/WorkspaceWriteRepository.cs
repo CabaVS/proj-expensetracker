@@ -1,9 +1,9 @@
 ﻿using CabaVS.ExpenseTracker.Application.Abstractions.Persistence.WriteRepositories;
 using CabaVS.ExpenseTracker.Domain.Entities;
-using CabaVS.ExpenseTracker.Persistence.Write.Entities;
+using CabaVS.ExpenseTracker.Persistence.Entities;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace CabaVS.ExpenseTracker.Persistence.Write.Repositories;
+namespace CabaVS.ExpenseTracker.Persistence.WriteRepositories;
 
 internal sealed class WorkspaceWriteRepository(ApplicationDbContext dbContext) : IWorkspaceWriteRepository
 {

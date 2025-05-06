@@ -1,8 +1,8 @@
 ﻿using CabaVS.ExpenseTracker.Application.Abstractions.Persistence.WriteRepositories;
 using CabaVS.ExpenseTracker.Domain.Entities;
-using CabaVS.ExpenseTracker.Persistence.Write.Entities;
+using CabaVS.ExpenseTracker.Persistence.Entities;
 
-namespace CabaVS.ExpenseTracker.Persistence.Write.Repositories;
+namespace CabaVS.ExpenseTracker.Persistence.WriteRepositories;
 
 internal sealed class WorkspaceMemberWriteRepository(ApplicationDbContext dbContext) : IWorkspaceMemberWriteRepository
 {

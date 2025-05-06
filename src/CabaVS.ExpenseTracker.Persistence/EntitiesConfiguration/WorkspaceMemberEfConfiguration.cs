@@ -1,8 +1,8 @@
-﻿using CabaVS.ExpenseTracker.Persistence.Write.Entities;
+﻿using CabaVS.ExpenseTracker.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CabaVS.ExpenseTracker.Persistence.Write.EntitiesConfiguration;
+namespace CabaVS.ExpenseTracker.Persistence.EntitiesConfiguration;
 
 internal sealed class WorkspaceMemberEfConfiguration : IEntityTypeConfiguration<WorkspaceMemberEfEntity>
 {

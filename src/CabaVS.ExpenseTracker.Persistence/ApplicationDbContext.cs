@@ -1,5 +1,5 @@
-﻿using CabaVS.ExpenseTracker.Persistence.Write.Entities;
-using CabaVS.ExpenseTracker.Persistence.Write.Interceptors;
+﻿using CabaVS.ExpenseTracker.Persistence.Entities;
+using CabaVS.ExpenseTracker.Persistence.Interceptors;
 using Microsoft.EntityFrameworkCore;
 
 namespace CabaVS.ExpenseTracker.Persistence;

@@ -1,8 +1,8 @@
 ﻿using CabaVS.ExpenseTracker.Application.Abstractions.Persistence;
 using CabaVS.ExpenseTracker.Application.Abstractions.Persistence.WriteRepositories;
-using CabaVS.ExpenseTracker.Persistence.Write.Repositories;
+using CabaVS.ExpenseTracker.Persistence.WriteRepositories;
 
-namespace CabaVS.ExpenseTracker.Persistence.Write;
+namespace CabaVS.ExpenseTracker.Persistence;
 
 internal sealed class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
 {

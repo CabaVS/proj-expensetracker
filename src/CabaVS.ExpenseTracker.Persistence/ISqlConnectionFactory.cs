@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace CabaVS.ExpenseTracker.Persistence.Read;
+namespace CabaVS.ExpenseTracker.Persistence;
 
 public interface ISqlConnectionFactory
 {
