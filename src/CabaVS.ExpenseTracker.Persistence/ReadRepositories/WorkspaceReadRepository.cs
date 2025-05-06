@@ -7,6 +7,25 @@ namespace CabaVS.ExpenseTracker.Persistence.ReadRepositories;
 
 internal sealed class WorkspaceReadRepository(ISqlConnectionFactory sqlConnectionFactory) : IWorkspaceReadRepository
 {
+    public async Task<WorkspaceSlimModel[]> GetAllWorkspacesAsync(Guid userId,
+        CancellationToken cancellationToken = default)
+    {
+        await using SqlConnection connection = sqlConnectionFactory.CreateConnection();
+        await connection.OpenAsync(cancellationToken);
+        
+        const string sql =
+            """
+            SELECT DISTINCT [w].[Id], [w].[Name]
+            	FROM [dbo].[Workspaces] AS [w]
+            INNER JOIN [dbo].[WorkspaceMembers] AS [wm]
+            	ON [wm].[WorkspaceId] = [w].[Id] AND [wm].[UserId] = @userId
+            ORDER BY [w].[Name]
+            """;
+        
+        IEnumerable<WorkspaceSlimModel> workspaces = await connection.QueryAsync<WorkspaceSlimModel>(sql, new { userId });
+        return [.. workspaces];
+    }
+
     public async Task<WorkspaceModel?> GetWorkspaceByIdAsync(Guid workspaceId, Guid userId,
         CancellationToken cancellationToken = default)
     {
