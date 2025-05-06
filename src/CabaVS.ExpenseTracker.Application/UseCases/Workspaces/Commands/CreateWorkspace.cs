@@ -15,7 +15,7 @@ internal sealed class CreateWorkspaceCommandHandler(ICurrentUserAccessor current
     public async Task<Result<Guid>> Handle(CreateWorkspaceCommand request, CancellationToken cancellationToken)
     {
         Result<Workspace> result = Workspace.CreateNew(request.Name);
-        return await result.Bind<Workspace, Guid>(async workspace =>
+        return await result.Map<Workspace, Guid>(async workspace =>
         {
             await unitOfWork.Workspaces.AddAsync(
                 workspace, 

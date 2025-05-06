@@ -1,4 +1,5 @@
-﻿using CabaVS.ExpenseTracker.Domain.Entities;
+﻿using System.Linq.Expressions;
+using CabaVS.ExpenseTracker.Domain.Entities;
 
 namespace CabaVS.ExpenseTracker.Persistence.Entities;
 
@@ -15,4 +16,9 @@ internal sealed class WorkspaceEfEntity
             Id = workspace.Id,
             Name = workspace.Name.Value
         };
+
+    public static Expression<Func<WorkspaceEfEntity, Workspace>> ProjectToDomain() => entity =>
+        Workspace
+            .CreateExisting(entity.Id, entity.Name)
+            .Value;
 }

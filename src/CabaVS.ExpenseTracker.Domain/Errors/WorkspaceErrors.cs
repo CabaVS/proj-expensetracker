@@ -6,6 +6,9 @@ namespace CabaVS.ExpenseTracker.Domain.Errors;
 
 public static class WorkspaceErrors
 {
+    public static Error AdminPermissionsRequired() => 
+        new($"{nameof(Workspace)}.{nameof(AdminPermissionsRequired)}", "Admin permissions required for such action.");
+    
     public static Error NotFound(Guid id) => 
         CommonErrors.NotFoundById(nameof(Workspace), id);
 

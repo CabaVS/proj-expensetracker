@@ -2,19 +2,14 @@
 
 public static class FunctionalResult
 {
-    public static Result<TOut> Map<TIn, TOut>(this Result<TIn> result, Func<TIn, TOut> mapFunc) =>
-        result.IsSuccess
-            ? Result<TOut>.Success(mapFunc(result.Value))
-            : Result<TOut>.Fail(result.Error);
-
     public static Result<TOut> Bind<TIn, TOut>(this Result<TIn> result, Func<TIn, Result<TOut>> bindFunc) =>
         result.IsSuccess
             ? bindFunc(result.Value)
             : Result<TOut>.Fail(result.Error);
     
-    public static async Task<Result<TOut>> Bind<TIn, TOut>(this Result<TIn> result, Func<TIn, Task<Result<TOut>>> bindFunc) =>
+    public static Result<TOut> Map<TIn, TOut>(this Result<TIn> result, Func<TIn, TOut> mapFunc) =>
         result.IsSuccess
-            ? await bindFunc(result.Value)
+            ? Result<TOut>.Success(mapFunc(result.Value))
             : Result<TOut>.Fail(result.Error);
     
     public static TOut Match<TOut>(this Result result, Func<TOut> successFunc, Func<Error, TOut> failFunc) =>

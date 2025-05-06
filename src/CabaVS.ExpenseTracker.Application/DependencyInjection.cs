@@ -17,6 +17,7 @@ public static class DependencyInjection
         
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(WorkspaceAuthorizationRequestBehavior<,>));
+        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(WorkspaceAdminAuthorizationRequestBehavior<,>));
         
         return services;
     }
