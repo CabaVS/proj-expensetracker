@@ -15,8 +15,8 @@ internal sealed class UpdateWorkspaceCommandHandler(IUnitOfWork unitOfWork)
 {
     public async Task<Result> Handle(UpdateWorkspaceCommand request, CancellationToken cancellationToken)
     {
-        Workspace workspace = await unitOfWork.Workspaces.GetByIdAsync(request.WorkspaceId, cancellationToken)
-            ?? throw new InvalidOperationException("Workspace not found.");
+        Workspace workspace = await unitOfWork.Workspaces.GetByIdAsync(request.WorkspaceId, cancellationToken) 
+                              ?? throw new InvalidOperationException("Workspace not found.");
 
         Result<Workspace> result = workspace.Rename(request.Name, true);
         await result.Tap(async updated =>
