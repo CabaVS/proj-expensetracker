@@ -34,10 +34,11 @@ public static class DependencyInjection
                 SqlConnection sqlConnection = sp.GetRequiredService<SqlConnection>();
                 options.UseSqlServer(sqlConnection, sqlOptions => sqlOptions.EnableRetryOnFailure(5));
             },
-            contextLifetime: ServiceLifetime.Transient,
-            optionsLifetime: ServiceLifetime.Transient);
+            contextLifetime: ServiceLifetime.Scoped,
+            optionsLifetime: ServiceLifetime.Scoped);
 
-        services.AddTransient<IUnitOfWork, UnitOfWork>();
+        // Note: While Transaction lifetime does enforce true isolation of UoW, it's recommended by MS to use Scoped lifetime for web applications
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         
         services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
 
