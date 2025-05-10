@@ -7,20 +7,33 @@ namespace CabaVS.ExpenseTracker.Domain.Entities;
 
 public sealed class Workspace : Entity
 {
+    private readonly List<WorkspaceMember> _members;
+    
     public WorkspaceName Name { get; private set; }
+    public IReadOnlyCollection<WorkspaceMember> Members => _members.AsReadOnly();
     
-    private Workspace(Guid id, WorkspaceName name) : base(id) => Name = name;
-    
-    public static Result<Workspace> CreateNew(string name) => 
-        CreateExisting(Guid.NewGuid(), name);
+    private Workspace(Guid id, WorkspaceName name, List<WorkspaceMember> members) : base(id)
+    {
+        Name = name;
+        _members = members;
+    }
 
-    public static Result<Workspace> CreateExisting(Guid id, string name) =>
+    public static Result<Workspace> CreateNew(string name, User creator) =>
+        CreateExisting(Guid.NewGuid(), name, [])
+            .Tap(w => w._members.Add(new WorkspaceMember(w, creator, true)));
+
+    public static Result<Workspace> CreateExisting(Guid id, string name, IEnumerable<WorkspaceMember> members) =>
         WorkspaceName.Create(name)
-            .Map(x => new Workspace(id, x));
+            .Map(x => new Workspace(id, x, [.. members]));
 
-    public Result<Workspace> Rename(string name, bool isAdmin) =>
-        Result<Workspace>.Success(this)
-            .Ensure(_ => isAdmin, WorkspaceErrors.AdminPermissionsRequired())
-            .Bind(_ => WorkspaceName.Create(name))
-            .Map(x => { Name = x; return this; });
+    public Result Rename(string name, User author) =>
+        Result.Success()
+            .Ensure(() => _members.Exists(wm => wm.User == author && wm.IsAdmin), WorkspaceErrors.AdminPermissionsRequired())
+            .Bind(() => WorkspaceName.Create(name))
+            .Tap(x => Name = x);
+
+    public Result AddMember(User user, bool isAdmin) =>
+        Result.Success()
+            .Ensure(() => !_members.Exists(wm => wm.User == user), WorkspaceErrors.MemberAlreadyExist(user.Id))
+            .Tap(() => _members.Add(new WorkspaceMember(this, user, isAdmin)));
 }

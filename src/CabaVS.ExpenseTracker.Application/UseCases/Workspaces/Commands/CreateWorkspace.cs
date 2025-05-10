@@ -14,18 +14,15 @@ internal sealed class CreateWorkspaceCommandHandler(ICurrentUserAccessor current
 {
     public async Task<Result<Guid>> Handle(CreateWorkspaceCommand request, CancellationToken cancellationToken)
     {
-        Result<Workspace> result = Workspace.CreateNew(request.Name);
-        return await result.Map<Workspace, Guid>(async workspace =>
+        UserModel currentUser = currentUserAccessor.GetCurrentUser();
+        
+        User user = await unitOfWork.Users.GetByIdAsync(currentUser.Id, cancellationToken)
+            ?? throw new InvalidOperationException("User not found.");
+        
+        Result<Workspace> result = Workspace.CreateNew(request.Name, user);
+        return await result.MapAsync<Workspace, Guid>(async workspace =>
         {
-            await unitOfWork.Workspaces.AddAsync(
-                workspace, 
-                cancellationToken);
-            await unitOfWork.WorkspaceMembers.AddUserToTheWorkspaceAsync(
-                workspace,
-                currentUserAccessor.GetCurrentUserId(),
-                true,
-                cancellationToken);
-            
+            await unitOfWork.Workspaces.AddAsync(workspace, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
             
             return workspace.Id;

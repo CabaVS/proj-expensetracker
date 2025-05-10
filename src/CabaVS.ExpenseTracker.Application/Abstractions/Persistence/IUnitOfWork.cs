@@ -4,8 +4,9 @@ namespace CabaVS.ExpenseTracker.Application.Abstractions.Persistence;
 
 public interface IUnitOfWork
 {
+    IUserWriteRepository Users { get; }
+    
     IWorkspaceWriteRepository Workspaces { get; }
-    IWorkspaceMemberWriteRepository WorkspaceMembers { get; }
     
     Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }

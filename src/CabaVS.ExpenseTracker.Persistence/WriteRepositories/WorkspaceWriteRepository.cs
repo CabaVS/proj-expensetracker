@@ -10,11 +10,13 @@ internal sealed class WorkspaceWriteRepository(ApplicationDbContext dbContext) :
 {
     public async Task<Workspace?> GetByIdAsync(Guid workspaceId, CancellationToken cancellationToken = default)
     {
-        Workspace? workspace = await dbContext.Workspaces
+        WorkspaceEfEntity? workspaceEf = await dbContext.Workspaces
+            .AsNoTracking()
+            .Include(w => w.Members!)
+            .ThenInclude(wm => wm.User)
             .Where(w => w.Id == workspaceId)
-            .Select(WorkspaceEfEntity.ProjectToDomain())
             .FirstOrDefaultAsync(cancellationToken);
-        return workspace;
+        return workspaceEf?.ConvertToDomain();
     }
 
     public Task<Guid> AddAsync(Workspace workspace, CancellationToken cancellationToken = default)

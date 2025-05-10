@@ -16,4 +16,7 @@ public static class WorkspaceErrors
         StringErrors.IsNullOrWhitespace(nameof(Workspace), nameof(Workspace.Name));
     public static Error NameIsTooLong(string? value) => 
         StringErrors.IsTooLong(nameof(Workspace), nameof(Workspace.Name), WorkspaceName.MaxLength, value);
+    
+    public static Error MemberAlreadyExist(Guid userId) =>
+        new($"{nameof(Workspace)}.{nameof(MemberAlreadyExist)}", $"Member {userId} already exist within a workspace.");
 }

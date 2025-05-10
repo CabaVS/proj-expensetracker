@@ -2,9 +2,39 @@
 
 public static class FunctionalResult
 {
+    public static Result Tap(this Result result, Action tapAction)
+    {
+        if (result.IsSuccess)
+        {
+            tapAction();
+        }
+        
+        return result;
+    }
+    
+    public static Result<T> Tap<T>(this Result<T> result, Action<T> tapAction)
+    {
+        if (result.IsSuccess)
+        {
+            tapAction(result.Value);
+        }
+        
+        return result;
+    }
+    
+    public static Result<TOut> Bind<TOut>(this Result result, Func<Result<TOut>> bindFunc) =>
+        result.IsSuccess
+            ? bindFunc()
+            : Result<TOut>.Fail(result.Error);
+    
     public static Result<TOut> Bind<TIn, TOut>(this Result<TIn> result, Func<TIn, Result<TOut>> bindFunc) =>
         result.IsSuccess
             ? bindFunc(result.Value)
+            : Result<TOut>.Fail(result.Error);
+    
+    public static Result<TOut> Map<TOut>(this Result result, Func<TOut> mapFunc) =>
+        result.IsSuccess
+            ? Result<TOut>.Success(mapFunc())
             : Result<TOut>.Fail(result.Error);
     
     public static Result<TOut> Map<TIn, TOut>(this Result<TIn> result, Func<TIn, TOut> mapFunc) =>
@@ -21,6 +51,13 @@ public static class FunctionalResult
         result.IsSuccess
             ? successFunc(result.Value)
             : failFunc(result.Error);
+    
+    public static Result Ensure(this Result result, Func<bool> condition, Error error) =>
+        result.IsFailure
+            ? result
+            : condition()
+                ? result
+                : Result.Fail(error);
     
     public static Result<T> Ensure<T>(this Result<T> result, Func<T, bool> condition, Error error) =>
         result.IsFailure
