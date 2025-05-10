@@ -17,7 +17,8 @@ internal sealed class GetWorkspaceByIdEndpoint(ISender sender)
         GetWorkspaceByIdEndpoint.RequestModel,
         Results<
             Ok<GetWorkspaceByIdEndpoint.ResponseModel>,
-            BadRequest<Error>>>
+            BadRequest<Error>,
+            NotFound<NotFoundError>>>
 {
     public override void Configure()
     {
@@ -30,14 +31,14 @@ internal sealed class GetWorkspaceByIdEndpoint(ISender sender)
         });
     }
 
-    public override async Task<Results<Ok<ResponseModel>, BadRequest<Error>>> ExecuteAsync(RequestModel req,
+    public override async Task<Results<Ok<ResponseModel>, BadRequest<Error>, NotFound<NotFoundError>>> ExecuteAsync(RequestModel req,
         CancellationToken ct)
     {
         var query = new GetWorkspaceByIdQuery(req.WorkspaceId);
         
         Result<WorkspaceModel> result = await sender.Send(query, ct);
 
-        return result.ToDefaultApiResponse(workspace => new ResponseModel(workspace));
+        return result.ToDefaultApiResponseWithNotFound(workspace => new ResponseModel(workspace));
     }
 
     internal sealed record RequestModel(Guid WorkspaceId);
@@ -69,6 +70,11 @@ internal sealed class GetWorkspaceByIdEndpoint(ISender sender)
                 (int)HttpStatusCode.BadRequest,
                 "Bad Request with Error.",
                 example: new Error("Error.Unknown", "Unknown error occured."));
+            
+            Response(
+                (int)HttpStatusCode.NotFound,
+                "Not Found with Error.",
+                example: new Error("Entity.NotFound", "Entity not found."));
         }
     }
 }

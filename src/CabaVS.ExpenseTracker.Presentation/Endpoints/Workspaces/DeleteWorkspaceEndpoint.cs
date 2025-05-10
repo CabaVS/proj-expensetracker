@@ -16,7 +16,8 @@ internal sealed class DeleteWorkspaceEndpoint(ISender sender)
         DeleteWorkspaceEndpoint.RequestModel,
         Results<
             Ok,
-            BadRequest<Error>>>
+            BadRequest<Error>,
+            NotFound<NotFoundError>>>
 {
     public override void Configure()
     {
@@ -29,7 +30,7 @@ internal sealed class DeleteWorkspaceEndpoint(ISender sender)
         });
     }
 
-    public override async Task<Results<Ok, BadRequest<Error>>> ExecuteAsync(RequestModel req,
+    public override async Task<Results<Ok, BadRequest<Error>, NotFound<NotFoundError>>> ExecuteAsync(RequestModel req,
         CancellationToken ct)
     {
         var command = new DeleteWorkspaceCommand(req.WorkspaceId);
@@ -62,6 +63,11 @@ internal sealed class DeleteWorkspaceEndpoint(ISender sender)
                 (int)HttpStatusCode.BadRequest,
                 "Bad Request with Error.",
                 example: new Error("Error.Unknown", "Unknown error occured."));
+            
+            Response(
+                (int)HttpStatusCode.NotFound,
+                "Not Found with Error.",
+                example: new Error("Entity.NotFound", "Entity not found."));
         }
     }
 }
