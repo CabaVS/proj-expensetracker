@@ -13,9 +13,9 @@ public static class WorkspaceErrors
         new($"{nameof(Workspace)}.{nameof(AdminPermissionsRequired)}", "Admin permissions required for such action.");
 
     public static Error NameIsNullOrWhitespace() =>
-        StringErrors.IsNullOrWhitespace(nameof(Workspace), nameof(Workspace.Name));
+        StringError.IsNullOrWhitespace(nameof(Workspace), nameof(Workspace.Name));
     public static Error NameIsTooLong(string? value) => 
-        StringErrors.IsTooLong(nameof(Workspace), nameof(Workspace.Name), WorkspaceName.MaxLength, value);
+        StringError.IsTooLong(nameof(Workspace), nameof(Workspace.Name), WorkspaceName.MaxLength, value);
     
     public static Error MemberAlreadyExist(Guid userId) =>
         new($"{nameof(Workspace)}.{nameof(MemberAlreadyExist)}", $"Member {userId} already exist within a workspace.");

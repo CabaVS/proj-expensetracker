@@ -1,6 +1,6 @@
 ﻿namespace CabaVS.ExpenseTracker.Domain.Common;
 
-public static class StringErrors
+public static class StringError
 {
     public static Error IsNullOrEmpty(string entity, string property) =>
         new(
