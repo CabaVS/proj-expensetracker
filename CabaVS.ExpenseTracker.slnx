@@ -6,6 +6,9 @@
     <File Path="Directory.Packages.props" />
     <File Path="global.json" />
   </Folder>
+  <Folder Name="/Solution Items/GitHub Actions/">
+    <File Path=".github\workflows\main.yml" />
+  </Folder>
   <Folder Name="/Solution Items/Scripts/">
     <File Path="scripts\cvs-efmigrations.ps1" />
   </Folder>

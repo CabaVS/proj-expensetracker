@@ -1,0 +1,39 @@
+name: Main CI/CD
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+        
+env:
+  BUILD_CONFIGURATION: "Release"
+  PATH_TO_CSPROJ_API: "./src/CabaVS.ExpenseTracker.API/CabaVS.ExpenseTracker.API.csproj"
+  PATH_TO_GLOBAL_JSON: "./global.json"
+  
+jobs:
+  build:
+    name: Build API project
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: ${{ env.PATH_TO_GLOBAL_JSON }}
+          
+      - name: Restore
+        run: dotnet restore ${{ env.PATH_TO_API }}
+        
+      - name: Build
+        run: dotnet build ${{ env.PATH_TO_API }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+        
+  push-image:
+    name: Push image to ACR
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+      - uses: actions/checkout@v4
