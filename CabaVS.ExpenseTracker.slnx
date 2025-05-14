@@ -6,6 +6,10 @@
     <File Path="Directory.Packages.props" />
     <File Path="global.json" />
   </Folder>
+  <Folder Name="/Solution Items/Docker/">
+    <File Path="Dockerfile" />
+    <File Path=".dockerignore" />
+  </Folder>
   <Folder Name="/Solution Items/GitHub Actions/">
     <File Path=".github\workflows\main.yml" />
   </Folder>
