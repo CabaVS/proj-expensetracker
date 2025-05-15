@@ -37,6 +37,7 @@ public static class Extensions
         {
             logging.IncludeFormattedMessage = true;
             logging.IncludeScopes = true;
+            logging.ParseStateValues = true;
         });
 
         builder.Services.AddOpenTelemetry()
@@ -45,8 +46,7 @@ public static class Extensions
                     .AddHttpClientInstrumentation()
                     .AddRuntimeInstrumentation())
             .WithTracing(tracing =>
-                tracing.AddSource(builder.Environment.ApplicationName)
-                    .AddAspNetCoreInstrumentation()
+                tracing.AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation());
 
         builder.AddOpenTelemetryExporters();
