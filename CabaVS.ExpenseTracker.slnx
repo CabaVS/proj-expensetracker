@@ -1,5 +1,5 @@
 <Solution>
-  <Folder Name="/scripts/" Id="02ea681e-c7d8-13c7-8484-4ac65e1b71e8">
+  <Folder Name="/scripts/">
     <File Path="scripts\cvs-efmigrations.ps1" />
   </Folder>
   <Folder Name="/Solution Items/">
@@ -9,14 +9,14 @@
     <File Path="Directory.Packages.props" />
     <File Path="global.json" />
   </Folder>
-  <Folder Name="/Solution Items/Docker/" Id="31b483c7-5a93-3735-d0cb-16e2438d4d65">
+  <Folder Name="/Solution Items/Docker/">
     <File Path=".dockerignore" />
     <File Path="Dockerfile" />
   </Folder>
-  <Folder Name="/Solution Items/GitHub Actions/" Id="5f56e0fb-89e4-a2ea-2b42-e4c4da414ba4">
+  <Folder Name="/Solution Items/GitHub Actions/">
     <File Path=".github\workflows\main.yml" />
   </Folder>
-  <Folder Name="/Solution Items/Scripts/" Id="eb4a6ed1-506c-a9c3-2245-c7e44ed24a1b">
+  <Folder Name="/Solution Items/Scripts/">
     <File Path="scripts\cvs-efmigrations.ps1" />
   </Folder>
   <Folder Name="/src/">
