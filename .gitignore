@@ -6,5 +6,9 @@ obj/
 .idea/
 *.DotSettings.user
 
+# Visual Studio IDE
+.vs/
+.vscode/
+
 # Docker
 .env

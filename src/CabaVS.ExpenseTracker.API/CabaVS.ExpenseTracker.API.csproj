@@ -1,13 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-    <PropertyGroup>
-        <UserSecretsId>cvs-expensetracker-api</UserSecretsId>
-    </PropertyGroup>
-
     <ItemGroup>
       <ProjectReference Include="..\CabaVS.ExpenseTracker.Application\CabaVS.ExpenseTracker.Application.csproj" />
       <ProjectReference Include="..\CabaVS.ExpenseTracker.Persistence\CabaVS.ExpenseTracker.Persistence.csproj" />
       <ProjectReference Include="..\CabaVS.ExpenseTracker.Presentation\CabaVS.ExpenseTracker.Presentation.csproj" />
+      <ProjectReference Include="..\CabaVS.ExpenseTracker.ServiceDefaults\CabaVS.ExpenseTracker.ServiceDefaults.csproj" />
     </ItemGroup>
 
 </Project>
