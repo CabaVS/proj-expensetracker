@@ -12,18 +12,20 @@ namespace CabaVS.ExpenseTracker.Persistence;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration, bool isDevelopment)
     {
         var connectionString = configuration.GetConnectionString("SqlDatabase")
                                ?? throw new InvalidOperationException("Connection string to the database is not configured.");
         
         services.AddTransient(_ =>
         {
-            var tokenRequest = new TokenRequestContext(
-                ["https://database.windows.net/.default"]);
-            var token = new DefaultAzureCredential()
-                .GetToken(tokenRequest)
-                .Token;
+            if (isDevelopment)
+            {
+                return new SqlConnection(connectionString);
+            }
+                
+            var tokenRequest = new TokenRequestContext(["https://database.windows.net/.default"]);
+            var token = new DefaultAzureCredential().GetToken(tokenRequest).Token;
 
             return new SqlConnection(connectionString) { AccessToken = token };
         });

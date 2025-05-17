@@ -11,7 +11,7 @@ if (builder.Environment.IsDevelopment())
 }
 
 builder.Services.AddApplication();
-builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddPersistence(builder.Configuration, builder.Environment.IsDevelopment());
 builder.Services.AddPresentation(builder.Host, builder.Configuration, builder.Environment.IsDevelopment());
 
 WebApplication app = builder.Build();
