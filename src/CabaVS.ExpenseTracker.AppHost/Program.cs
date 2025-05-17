@@ -6,12 +6,7 @@ IResourceBuilder<SqlServerServerResource> sql = builder.AddSqlServer("sql-expens
 
 IResourceBuilder<SqlServerDatabaseResource> db = sql.AddDatabase("sqldb-expensetracker");
 
-builder
-    .AddDockerfile("aca-expensetrackerapi", "../..")
-    .WithImage("expensetrackerapi")
-    .WithImageTag("local")
-    .WithContainerRuntimeArgs("--env-file", "../../.env")
-    .WithHttpEndpoint(port: 4790, targetPort: 4790)
+builder.AddProject<Projects.CabaVS_ExpenseTracker_API>("aca-expensetrackerapi")
     .WithReference(db, "SqlDatabase")
     .WaitFor(db);
 

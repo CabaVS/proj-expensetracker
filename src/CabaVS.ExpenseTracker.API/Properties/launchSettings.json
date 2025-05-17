@@ -1,16 +1,14 @@
-{
+﻿{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "Aspire : HTTPS": {
+    "Kestrel : HTTPS": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
-      "applicationUrl": "https://localhost:4795",
+      "applicationUrl": "https://localhost:4790",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DOTNET_ENVIRONMENT": "Development",
-        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:4796",
-        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:4797"
+        "CVS_USER_ID": "00000001-0001-0001-0001-000000000001"
       }
     }
   }

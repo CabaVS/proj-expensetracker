@@ -4,20 +4,22 @@ using CabaVS.ExpenseTracker.Presentation;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+var isDevelopment = builder.Environment.IsDevelopment();
+
 // Only for Aspire (DEV only)
-if (builder.Environment.IsDevelopment())
+if (isDevelopment)
 {
     builder.AddServiceDefaults();
 }
 
 builder.Services.AddApplication();
-builder.Services.AddPersistence(builder.Configuration, builder.Environment.IsDevelopment());
-builder.Services.AddPresentation(builder.Host, builder.Configuration, builder.Environment.IsDevelopment());
+builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddPresentation(builder.Host, builder.Configuration, isDevelopment);
 
 WebApplication app = builder.Build();
 
 // Only for Aspire (DEV only)
-if (app.Environment.IsDevelopment())
+if (isDevelopment)
 {
     app.MapDefaultEndpoints();
 }
