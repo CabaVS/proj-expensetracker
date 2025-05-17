@@ -19,7 +19,7 @@ public static class DependencyInjection
         
         services.AddTransient(_ =>
         {
-            var useEntraId = bool.Parse(configuration["Custom:EntraIdAuthForPersistence"] ?? true.ToString());
+            var useEntraId = bool.Parse(configuration["CVS_PERSISTENCE_AUTH_ENTRA_ID"] ?? "true");
             if (!useEntraId)
             {
                 return new SqlConnection(connectionString);
