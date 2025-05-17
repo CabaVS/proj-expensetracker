@@ -25,6 +25,7 @@
     <Project Path="src\CabaVS.ExpenseTracker.API\CabaVS.ExpenseTracker.API.csproj" />
     <Project Path="src\CabaVS.ExpenseTracker.Application\CabaVS.ExpenseTracker.Application.csproj" />
     <Project Path="src\CabaVS.ExpenseTracker.Domain\CabaVS.ExpenseTracker.Domain.csproj" />
+    <Project Path="src\CabaVS.ExpenseTracker.Infrastructure\CabaVS.ExpenseTracker.Infrastructure.csproj" />
     <Project Path="src\CabaVS.ExpenseTracker.Persistence\CabaVS.ExpenseTracker.Persistence.csproj" />
     <Project Path="src\CabaVS.ExpenseTracker.Presentation\CabaVS.ExpenseTracker.Presentation.csproj" />
   </Folder>

@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\CabaVS.ExpenseTracker.Application\CabaVS.ExpenseTracker.Application.csproj" />
+      <ProjectReference Include="..\CabaVS.ExpenseTracker.Infrastructure\CabaVS.ExpenseTracker.Infrastructure.csproj" />
       <ProjectReference Include="..\CabaVS.ExpenseTracker.Persistence\CabaVS.ExpenseTracker.Persistence.csproj" />
       <ProjectReference Include="..\CabaVS.ExpenseTracker.Presentation\CabaVS.ExpenseTracker.Presentation.csproj" />
       <ProjectReference Include="..\CabaVS.ExpenseTracker.ServiceDefaults\CabaVS.ExpenseTracker.ServiceDefaults.csproj" />

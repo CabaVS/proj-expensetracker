@@ -27,6 +27,11 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageVersion>
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.5" />
+    <!-- Infrastructure -->
+    <PackageVersion Include="Azure.Identity" Version="1.14.0" />
+    <PackageVersion Include="Azure.Storage.Blobs" Version="12.24.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="9.0.5" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="9.0.5" />
     <!-- Presentation -->
     <PackageVersion Include="FastEndpoints" Version="6.1.0" />
     <PackageVersion Include="FastEndpoints.Swagger" Version="6.1.0" />
